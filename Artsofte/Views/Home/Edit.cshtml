@@ -1,0 +1,33 @@
+﻿@using Artsofte.Models.Enum
+@using Artsofte.Models.ViewModels
+@model EditViewModel
+
+@{
+	SelectList gender = new SelectList(Enum.GetValues(typeof(Gender)).Cast<Gender>());
+	SelectList department = new SelectList(Model.deList);
+	SelectList PrLang = new SelectList(Model.PrList);
+}
+
+<form asp-action="Edit" asp-controller="Home" method="post" enctype="multipart/form-data">
+	<label>Name</label>
+	<input type="text" name="employee.Name" value="@Model.employee.Name" /><br>
+	<label>Surname</label>
+	<input type="text" name="employee.Surname" value="@Model.employee.Surname" /><br>
+	<label>Age</label>
+	<input type="number" name="employee.Age" value="@Model.employee.Age" /><br>
+	<label>Gender</label> 
+	<select asp-for="employee.Gender" asp-items="gender">
+		<option>Choose gender</option>
+	</select><br />
+	<label>Department</label>
+	<select asp-for="employee.Department" asp-items="department">
+		<option>Choose department</option>
+	</select><br />
+	<label>Programming language</label>
+	<select asp-for="employee.pr_lang" asp-items="PrLang">
+		<option>Choose language</option>
+	</select><br />
+	<input type="hidden" name="employee.Id" value="@Model.employee.Id"/><br />
+	<input type="submit" value="Edit" />
+	<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">cancel</a>
+</form>

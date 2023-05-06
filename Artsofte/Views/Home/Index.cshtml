@@ -1,0 +1,44 @@
+﻿@using Artsofte.Models.ViewModels
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <table>
+        <tr>
+          
+            <th scope="col">Name</th>
+            <th scope="col">Surname</th>
+            <th scope="col">Age</th>
+            <th scope="col">Department</th>
+            <th scope="col">Language</th>
+            <th scope="col"></th>
+
+        </tr>
+        @foreach (EmployeeViewModel o in Model)
+        {
+            <tr>
+                
+                <td>
+                    @o.Name
+                </td>
+                <td>
+                    @o.Surname
+                </td>
+                <td>@o.Age</td>
+                <td>@o.Department</td>
+                <td>@o.pr_lang</td>
+                <td>
+                    
+                    <form method="post" >
+                        <input type="submit" value="Delete" asp-controller="Home" asp-action="Delete" asp-route-id="@o.Id" />
+                        <a class="navbar-brand"  asp-area="" asp-controller="Home" asp-action="Edit" asp-route-id="@o.Id">edit</a>
+                    </form>
+                    
+                </td>
+            </tr>
+        }
+
+
+    </table>
+</div>
